@@ -60,55 +60,54 @@ createGameUI();
 });
 
 function pexeso() {
-let d = document.getElementById("difficulty").value;
-switch (d) {
-    case "veryeasy":
-    playingField(3, 3);
-    break;
-    case "easy":
-    playingField(4, 4);
-    break;
-    case "medium":
-    playingField(6, 6);
-    break;
-    case "hard":
-    playingField(8, 8);
-    break;
-    case "ultrahard":
-    playingField(10, 10);
-    break;
-}
+    let d = document.getElementById("difficulty").value;
+    switch (d) {
+        case "veryeasy":
+        playingField(3, 3);
+        break;
+        case "easy":
+        playingField(4, 4);
+        break;
+        case "medium":
+        playingField(6, 6);
+        break;
+        case "hard":
+        playingField(8, 8);
+        break;
+        case "ultrahard":
+        playingField(10, 10);
+        break;
+    }
 }
 
 function playingField(rows, cols) {
-const appDiv = document.createElement("div");
-appDiv.id = "app";
-document.body.appendChild(appDiv);
-
-gameBoard = [];
-flippedCards = [];
-matchedPairs = 0;
-
-const totalCards = rows * cols;
-const cards = generateCards(totalCards);
-
-for (let i = 0; i < rows; i++) {
-    const row = document.createElement("div");
-    row.style.display = "flex";
-    gameBoard[i] = [];
-    for (let j = 0; j < cols; j++) {
-    const button = document.createElement("button");
-    button.id = `button_${i}_${j}`;
-    button.className = "piece";
-    button.innerText = "";
-    button.addEventListener("click", () => flipCard(i, j, cards[i * cols + j]));
-    gameBoard[i][j] = button;
-    row.appendChild(button);
+    const appDiv = document.createElement("div");
+    appDiv.id = "app";
+    document.body.appendChild(appDiv);
+    
+    gameBoard = [];
+    flippedCards = [];
+    matchedPairs = 0;
+    
+    const totalCards = rows * cols;
+    const cards = generateCards(totalCards);
+    
+    for (let i = 0; i < rows; i++) {
+        const row = document.createElement("div");
+        row.style.display = "flex";
+        gameBoard[i] = [];
+        for (let j = 0; j < cols; j++) {
+        const button = document.createElement("button");
+        button.id = `button_${i}_${j}`;
+        button.className = "piece";
+        button.innerText = "";
+        button.addEventListener("click", () => flipCard(i, j, cards[i * cols + j]));
+        gameBoard[i][j] = button;
+        row.appendChild(button);
+        }
+        appDiv.appendChild(row);
     }
-    appDiv.appendChild(row);
-}
-
-updatePlayerInfo();
+    updatePlayerInfo();
 }
   
 
